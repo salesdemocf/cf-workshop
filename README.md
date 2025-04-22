@@ -44,13 +44,17 @@ git checkout -b add-default-promotion-flow
 ``` console
 cp workshop-templates/resources/configurations/promotion-flows/dev-stg-prod-flow.yaml codefresh-isc/resources/configurations/promotion-flows/dev-stg-prod-flow.yaml
 ```
-3. Add file, commmit and push
+3. Add .gitignore file
+``` console
+echo "*.bak" > .gitignore
+```
+4. Add files, commmit and push
 ``` console
 git add resources/configurations/promotion-flows/dev-stg-prod-flow.yaml
 git commit -m "Add default promotion flow"
 git push --set-upstream origin add-default-promotion-flow
 ```
-4. Open pull request against main branch and merge
+5. Open pull request against main branch and merge
 
 All products share this default promotion flow.
 
@@ -68,7 +72,8 @@ git clone ...
 ```
 3. Copy all product files form cf-workshop into codefresh-isc at same relative path.
 ```
-cp -r workshop-templates/resources/configurations/products ../codefresh-isc/resources/configurations/products
+cp -r workshop-templates/resources/configurations/products ../codefresh-isc/resources/configurations
+cd ../codefresh-isc/resources/configurations/products
 ```
 4. Create branch based on your abbreviation. 
 ``` console
@@ -83,7 +88,7 @@ mv abbr-worker.yaml $ABBR-worker.yaml
 ```
 6. Replace abbr in files.
 ``` console
-cd ../codefresh-isc/resources/configurations/products && find . -type f -name "*.yaml" -exec sed -i .bak -e "s|abbr|$ABBR|g" {} +
+find . -type f -name "$ABBR*.yaml" -exec sed -i .bak -e "s|abbr|$ABBR|g" {} +
 ```
 7. Add files, commmit and push
 ``` console
