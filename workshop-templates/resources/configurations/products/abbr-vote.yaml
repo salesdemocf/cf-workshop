@@ -1,0 +1,24 @@
+apiVersion: codefresh.io/v1beta2
+kind: Product
+metadata:
+  name: abbr-vote
+spec:
+  promotionFlows:
+    - name: dev-stg-prod-flow
+      gitTriggerSelectors:
+        - key: commitMessage
+          operator: In
+          values:
+            - Deploy*
+  promotionTemplate:
+    versionSource:
+      file: values.yaml
+      jsonPath: $.vote.image.tag
+    promotion:
+      Chart.yaml:
+        jsonPaths:
+          - $.version
+          - $.appVersion
+      values.yaml:
+        jsonPaths:
+          - $.vote.image.tag

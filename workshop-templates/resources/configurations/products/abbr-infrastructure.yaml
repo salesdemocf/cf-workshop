@@ -1,0 +1,23 @@
+apiVersion: codefresh.io/v1beta1
+kind: Product
+metadata:
+  name: abbr-infrastructure
+spec:
+  promotionFlows:
+    - name: dev-stg-prod-flow
+      gitTriggerSelectors:
+        - key: commitMessage
+          operator: In
+          values:
+            - Deploy*
+  promotionTemplate:
+    versionSource:
+      file: Chart.yaml
+      jsonPath: $.version
+    promotion:
+      Chart.yaml:
+        jsonPaths:
+          - $.version
+      values.yaml:
+        jsonPaths:
+          - '*'

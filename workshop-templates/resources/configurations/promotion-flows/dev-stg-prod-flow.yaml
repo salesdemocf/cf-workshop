@@ -1,0 +1,19 @@
+apiVersion: codefresh.io/v1beta1
+kind: PromotionFlow
+metadata:
+  name: dev-stg-prod-flow
+  annotations:
+    description: "Default Promotion Flow"
+spec:
+  triggerEnvironment: development
+  steps:
+    - environment: staging
+      dependsOn:
+        - development
+      policy:
+        action: commit
+    - environment: production
+      dependsOn:
+        - staging
+      policy:
+        action: commit

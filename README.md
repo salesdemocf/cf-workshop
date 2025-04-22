@@ -33,3 +33,14 @@ GitOps Integrations
 In your Codefresh Account install a GitOps Cloud Runtime
 
 - [Installation Instructions](https://codefresh.io/docs/docs/gitops-quick-start/quick-start-install-runtime/)
+
+Users will need to come back to this repository to pick up their product workshop-templates/resources/configurations/products.
+
+1. Clone your codefresh-isc repository.
+1. Copy all product files form cf-workshop into codefresh-isc at same relative path.
+1. Replace abbr in filename and within file under metadata.name with your abbreviation.
+1. Create a branch on codefresh-isc repository with your changes and submit PR to main branch and merge.
+
+Admins will need to copy over the promotion flow dev-stg-prod-flow.yaml under workshop-templates/resources/configurations/promotion-flows into the same path in the codefresh-isc.  
+
+All products share that default promotion flow.
