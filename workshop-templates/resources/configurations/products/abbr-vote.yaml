@@ -12,8 +12,8 @@ spec:
             - Deploy*
   promotionTemplate:
     versionSource:
-      file: values.yaml
-      jsonPath: $.vote.image.tag
+      file: Chart.yaml
+      jsonPath: $.appVersion
     promotion:
       Chart.yaml:
         jsonPaths:
